@@ -100,7 +100,7 @@ const Home = () => {
                   </Typography>
                   <CardContentNoPadding>
                     <Typography sx={{ color:'#FFFFFF' }} variant="h4" component="h1">
-                      <Link href={`https://flightaware.com/live/flight/${flight.ident}`}>{flight.ident}</Link>
+                      <Link href={`https://flightaware.com/live/flight/${flight.ident}`}>{flight.ident}</Link><br/>
                       <Button
                         href={`https://flightaware.com/live/flight/${flight.ident}`}
                         variant='contained'
@@ -108,8 +108,6 @@ const Home = () => {
                         color="success"
                         endIcon={<OpenInNewIcon/>}
                         sx={{
-                          marginLeft:3,
-                          transform: 'translate(0%, -10%)'
                         }}>
                             track on flightaware
                       </Button>
