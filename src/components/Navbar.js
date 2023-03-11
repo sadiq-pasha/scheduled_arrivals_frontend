@@ -32,20 +32,8 @@ export default function ButtonAppBar() {
             </IconButton>
           </Link>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color:'#EBEBD3' }}>
-            Planespotting at KLAX
+            Planespotting at LAX
           </Typography>
-          <Link to="/laxinfo" style={{ textDecoration: 'none'}}>
-            <Button sx={{ 
-              mr: 2,
-              backgroundColor: '#17BEBB',
-              color: '#000000',
-              '&:hover': {
-                backgroundColor: '#D90368',
-              }    
-            }}>
-                KLAX INFO
-            </Button>
-          </Link>
           <Link to="/about" style={{ textDecoration: 'none'}}>
             <Button sx={{ 
               mr: 2,
@@ -55,8 +43,18 @@ export default function ButtonAppBar() {
                 backgroundColor: '#D90368',
               }    
             }}>
-                ABOUT
+                    ABOUT
             </Button>
+          </Link>
+          <Link to="/laxinfo" style={{ textDecoration: 'none'}}>
+            <Button sx={{ 
+              mr: 2,
+              backgroundColor: '#17BEBB',
+              color: '#000000',
+              '&:hover': {
+                backgroundColor: '#D90368',
+              }    
+            }}>KLAX</Button>
           </Link>
         </Toolbar>
       </AppBar>

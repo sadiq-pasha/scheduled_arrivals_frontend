@@ -18,7 +18,6 @@ import SearchAppBar from '../components/Navbar'
 import { Link as reactRouter } from 'react-router-dom'
 import { Box } from '@mui/system'
 
-const datis = 'LAX ATIS INFO K 0753Z. 01003KT 10SM FEW015 FEW250 10/07 A3011 (THREE ZERO ONE ONE). INST APCHS AND RNAV RNP APCHS RY 24R AND 25L, OR VCTR FOR VISUAL APCH WILL BE PROVIDED, SIMUL VISUAL APCHS TO ALL RWYS ARE IN PROG, SIMUL INSTR DEPARTURES IN PROG RWYS 24 AND 25. RWY 2 4 RIGHT SIX LEFT CLSD. TWY E CLSD BTN TWY, AA AND TWY P . PAPI OTS 24L, 25R, 7L, VENTURA VOR OTS. HAZD WX INFO FOR LAX AREA AVBL FM FSS. BIRD ACTIVITY VICINITY ARPT. TWR FREQ FOR ALL RWYS IS 120.95. CD AND GC FREQ IS 121.75. INCLUDE YOUR CALL SIGN IN ALL READBACKS. ...ADVS YOU HAVE INFO K.'
 
 // function to create table data
 function createData(key, value) {
@@ -34,6 +33,7 @@ const rows = [
   createData('Airlines served', 'approx. 70'),
 ]
 
+// main page component
 const LaxInfo = () => {
   return (
     <div>
@@ -42,8 +42,8 @@ const LaxInfo = () => {
         sx={{
           border: 'solid 1px #EBEBD3', 
           borderRadius: 2,
-          backgroundColor: '#290029',
-          marginTop: 3
+          backgroundColor: 'rgba(41,0,41,0.4)',
+          marginY: 3,
         }}
       >
         <Card sx={{ alignItems: 'center', margin: 2}}>
@@ -101,14 +101,6 @@ const LaxInfo = () => {
             <Link href='https://www.liveatc.net/hlisten.php?mount=klax5&icao=klax'>LAX ground comms on LiveATC.net</Link><br/>
             <Link href='https://www.liveatc.net/hlisten.php?mount=klax_twr&icao=klax'>LAX tower comms on LiveATC.net</Link>
 
-          </Typography>
-        </Box>
-        <Box marginTop={3}>
-          <Typography sx={{ color:'#FFFFFF'}} variant='h5' component='h1' m={2} align='left'>
-                Terminal Forecast
-          </Typography>
-          <Typography sx={{ color:'#FFFFFF'}} variant='body1' m={2} component='h1'>
-            {datis}
           </Typography>
         </Box>
       </Container>
