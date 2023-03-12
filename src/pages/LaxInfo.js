@@ -98,7 +98,7 @@ const LaxInfo = () => {
             Another popular spotting location sits under the final approach for runways 24L/24R at the <Link href='https://goo.gl/maps/nc99uHpquUAsWgiL6'>In-N-Out Burger</Link> on Sepulveda Boulevard.<br/>
             This is one of the few remaining locations in Southern California from which spotters can watch a wide variety of low-flying commercial airliners from directly underneath their flight paths.<br/>
             You can also tune into the airport controller communications.<br/>
-            <Link href='https://www.liveatc.net/hlisten.php?mount=klax5&icao=klax'>LAX ground comms on LiveATC.net</Link><br/>
+            <Link href='https://www.liveatc.net/hlisten.php?mount=klax_gnd&icao=klax'>LAX ground comms on LiveATC.net</Link><br/>
             <Link href='https://www.liveatc.net/hlisten.php?mount=klax_twr&icao=klax'>LAX tower comms on LiveATC.net</Link>
 
           </Typography>

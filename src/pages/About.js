@@ -27,10 +27,10 @@ const About = () => {
             <Typography sx={{ color:'#FFFFFF'}} variant='body1' m={2} component='h1'>
             Hi! My name is <Link href='https://www.linkedin.com/in/sadiq-pasha/'>Sadiq</Link>, I am a full stack web developer.<br/>
             Planespotting is one my favourite hobbies and I am lucky to live in Southern California where we have some of the best planespotting in the world.<br/>
-            Watching planes at LAX is fun, but it meant that I had to juggle multiple websites to find information on arriving aircraft.<br/>
+            Watching planes at LAX is fun, but it means juggling multiple websites to find information on arriving aircraft.<br/>
             I cant help but be curious about aircraft flying in from all over the world, full of people with dreams, ambitions, fears; the pilots who fly these aircraft and of course; the fantastic aircraft themselves.<br/>
             I want to know all I can about the planes I watch. Where they come from, how long they have been flying, when they were made and by whom.<br/>
-            I created this website a way to put all that information together in one place.<br/><br/>
+            I created this website as a way to put all that information together in one place.<br/><br/>
             Because this website was created as a tool for planespotters, it is a MOBILE first design. It is HIGHLY recommended to view this website from your phone.<br/>
             A better aesthetic for desktops could be created in the future.
             </Typography>
@@ -43,17 +43,21 @@ const About = () => {
                 As this is a portfolio website, following is the tech stack that it is built on:<br/>
                 &nbsp;&nbsp;1. REACT as the development and UI framework.<br/>
                 &nbsp;&nbsp;2. MATERIAL UI for the reusable components and customisability.<br/>
+                &nbsp;&nbsp;2. ESLINT for enforcing code style and formatting.<br/>
                 &nbsp;&nbsp;3. EXPRESS as the backend server.<br/>
+                &nbsp;&nbsp;3. NODEJS as the backend runtime environment.<br/>
                 &nbsp;&nbsp;4. AXIOS for fetching data from the server.<br/>
                 &nbsp;&nbsp;5. MONGODB as the database for flight and airframe data.<br/>
                 &nbsp;&nbsp;6. MONGOOSE as the ODM between Express and MongoDB.<br/>
-                &nbsp;&nbsp;7. Cloud hosting on Render.io.<br/>
+                &nbsp;&nbsp;7. GIT for version control.<br/>
+                &nbsp;&nbsp;7. GITHUB as the remote repository.<br/>
+                &nbsp;&nbsp;7. CLOUD HOSTING on Render.io.<br/>
                 &nbsp;&nbsp;8. Various API services for fetching data:<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;a. flightaware.com for getting scheduled arrival information<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;a. flightaware.com for getting arrivals infor<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;b. planespotters.net for aircraft photos<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;c. goflightlabs.com for airframe data<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;d. airport-data.com for airframe data<br/><br/>
-                If you use any part of this stack, I would love to work with you and learn more! Connect with me on <Link href='https://www.linkedin.com/in/sadiq-pasha/'>linked-in</Link>.
+                If you use any part of this stack, I would love to work with you and learn more! Connect with me on <Link href='https://www.linkedin.com/in/sadiq-pasha/'>LinkedIn</Link>.
             </Typography>
           </Box>
           <Box marginTop={3}>
@@ -67,6 +71,7 @@ const About = () => {
             The next step is to get photos of the aircraft. This is done using the <Link href='https://www.planespotters.net/photo/api'>planespotters public API</Link>.<br/>
             Once the photos are curated, airframe data is requested from <Link href='https://www.goflightlabs.com/'>goflightlabs</Link>.<br/>
             This completes the data acquisition. The data is then sanitized and converted into JSON, after which it is stored on the server awaiting requests from users.<br/>
+            Flights for which tail numbers and photos are not found are then filtered; as these are critical to the website.<br/>
             The front end of the website is a React skeleton painted over with a thick Material UI coating. The useState and useEffect hooks from react handle all of the data fetching and state management.<br/>
             Material UI provides reusable components such as Containers, Modals, Links and the Navbar.<br/>
             Client side routing is handled by React router. 
