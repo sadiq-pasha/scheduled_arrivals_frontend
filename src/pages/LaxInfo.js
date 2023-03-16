@@ -61,7 +61,7 @@ const LaxInfo = () => {
         </Typography>
         <Box marginTop={3}>
           <Typography sx={{ color:'#FFFFFF'}} variant='h5' component='h1' m={2} align='left'>
-            The X in LAX
+           The ❌ in LAX
           </Typography>
           <Typography sx={{ color:'#FFFFFF'}} variant='body1' m={2} component='h1'>
             Before the 1930s, US airports used a two-letter abbreviation and at that time, 
@@ -72,7 +72,7 @@ const LaxInfo = () => {
         </Box>
         <Box marginTop={3}>
           <Typography sx={{ color:'#FFFFFF'}} variant='h5' component='h1' m={2} align='left'>
-                Airport Information
+          ℹ️ Airport Information
           </Typography>
           <Table aria-label="simple table">
             <TableBody>
@@ -91,15 +91,15 @@ const LaxInfo = () => {
         </Box>
         <Box marginTop={3}>
           <Typography sx={{ color:'#FFFFFF'}} variant='h5' component='h1' m={2} align='left'>
-                Planespotting at LAX
+          🔭 Planespotting at LAX
           </Typography>
           <Typography sx={{ color:'#FFFFFF'}} variant='body1' m={2} component='h1'>
-            <Link href='https://goo.gl/maps/H9N7eomTGHPj2CSq8'>Clutters Park</Link> in El Segundo is a prime location for aircraft spotting for takeoffs from 25L/25R.<br/>
+            <Link href='https://goo.gl/maps/H9N7eomTGHPj2CSq8'>Clutters Park</Link> in El Segundo is a prime location for aircraft spotting for takeoffs from 25L/25R.<br/><br/>
             Another popular spotting location sits under the final approach for runways 24L/24R at the <Link href='https://goo.gl/maps/nc99uHpquUAsWgiL6'>In-N-Out Burger</Link> on Sepulveda Boulevard.<br/>
-            This is one of the few remaining locations in Southern California from which spotters can watch a wide variety of low-flying commercial airliners from directly underneath their flight paths.<br/>
-            You can also tune into the airport controller communications.<br/>
-            <Link href='https://www.liveatc.net/hlisten.php?mount=klax_gnd&icao=klax'>LAX ground comms on LiveATC.net</Link><br/>
-            <Link href='https://www.liveatc.net/hlisten.php?mount=klax_twr&icao=klax'>LAX tower comms on LiveATC.net</Link>
+            This is one of the few remaining locations in Southern California from which spotters can watch a wide variety of low-flying commercial airliners from directly underneath their flight paths.<br/><br/>
+            You can also tune into the airport controller communications:<br/>
+            LAX ground comms <Link href='https://www.liveatc.net/hlisten.php?mount=klax_gnd&icao=klax'>on LiveATC.net</Link><br/>
+            LAX tower comms <Link href='https://www.liveatc.net/hlisten.php?mount=klax_twr&icao=klax'>on LiveATC.net</Link><br/>
 
           </Typography>
         </Box>

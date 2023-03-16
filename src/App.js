@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import LaxInfo from './pages/LaxInfo'
 import AirportDiagram from './pages/AirportDiagram'
+import UnknownEndpoint from './pages/UnknownEndpoint'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/laxinfo' element={<LaxInfo />} />
+        <Route path='*' exact={true} element={<UnknownEndpoint />} />
       </Routes>
     </BrowserRouter>
   )
