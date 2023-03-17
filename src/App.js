@@ -11,8 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/airportdiagram' element={<AirportDiagram />} />
         <Route path='/' element={<Home />} />
+        <Route path='/airportdiagram' element={<AirportDiagram />} />
         <Route path='/about' element={<About />} />
         <Route path='/laxinfo' element={<LaxInfo />} />
         <Route path='*' exact={true} element={<UnknownEndpoint />} />
