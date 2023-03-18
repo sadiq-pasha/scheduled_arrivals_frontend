@@ -43,7 +43,7 @@ export default function ButtonAppBar() {
                 backgroundColor: '#D90368',
               }    
             }}>
-                    ABOUT
+                ABOUT
             </Button>
           </Link>
           <Link to="/laxinfo" style={{ textDecoration: 'none'}}>
@@ -54,7 +54,9 @@ export default function ButtonAppBar() {
               '&:hover': {
                 backgroundColor: '#D90368',
               }    
-            }}>KLAX</Button>
+            }}>
+                KLAX
+            </Button>
           </Link>
         </Toolbar>
       </AppBar>

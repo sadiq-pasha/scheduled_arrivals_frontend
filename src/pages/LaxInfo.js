@@ -13,6 +13,7 @@ import Link from '@mui/material/Link'
 //component imports 
 import airportDiagram from '../images/KLAX_FAA_Airport_Diagram.png'
 import SearchAppBar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 //react router imports
 import { Link as reactRouter } from 'react-router-dom'
@@ -104,6 +105,7 @@ const LaxInfo = () => {
           </Typography>
         </Box>
       </Container>
+      <Footer/>
     </div>
   )
 }

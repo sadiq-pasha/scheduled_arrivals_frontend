@@ -3,6 +3,7 @@ import Box from '@mui/system/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/system/Container'
 import Link from '@mui/material/Link'
+import Footer from '../components/Footer'
 
 const About = () => {
   return (
@@ -93,6 +94,7 @@ const About = () => {
           </Box>
         </Box>
       </Container>
+      <Footer/>
     </div>
   )
 }

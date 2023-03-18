@@ -6,7 +6,6 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import SearchAppBar from '../components/Navbar'
 import { CardActionArea } from '@mui/material'
 import Box from '@mui/system/Box'
 import { styled } from '@mui/material/styles'
@@ -19,6 +18,10 @@ import BoltIcon from '@mui/icons-material/Bolt'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import CircularProgress from '@mui/material/CircularProgress'
 import AirplanemodeInactiveIcon from '@mui/icons-material/AirplanemodeInactive'
+
+// components
+import Footer from '../components/Footer'
+import SearchAppBar from '../components/Navbar'
 
 // react and services imports
 import getData from '../services/axios'
@@ -281,6 +284,7 @@ const Home = () => {
               }
             </Grid>
           </Container>
+          <Footer/>
         </div>
       )
     } 
