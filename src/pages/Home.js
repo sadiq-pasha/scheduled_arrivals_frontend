@@ -62,7 +62,7 @@ const Home = () => {
   useEffect(() => {
     getData().then(response => {
       setFlightData(response)
-      if (!response.error){
+      if (response && !response.error){
         setAirframeData(response.map(each => {
           return each.airframeData ? Object.entries(each.airframeData) : null
         }))
@@ -100,20 +100,20 @@ const Home = () => {
         </div>
       )
     }  else   {
+      const cardWidth = Math.max(...flightData.map(flight => flight.photo.width))
+      const cardHeight = Math.max(...flightData.map(flight => flight.photo.height))
       return (
         <div className="App">
           <SearchAppBar/>
-          <Container
+          <Container maxWidth={false}
             sx={{
               border: 'solid 1px #EBEBD3', 
+              width: '95%',
               borderRadius: 2,
               backgroundColor: 'rgba(41,0,41,0.4)',
-              marginY: 3,
+              marginY: 2,
             }}>
-            <Box m={1}>
-              <Typography sx={{ color:'#FFFFFF' }} variant='h6' component='h1' m={1} align='center'>
-            Happy Spotting! 🤩✈️
-              </Typography>
+            <Box m={2}>
               <Box display='flex' justifyContent='center' gap={3} marginBottom={2}>
                 <Button
                   href={'https://www.liveatc.net/hlisten.php?mount=klax_twr&icao=klax'}
@@ -145,16 +145,31 @@ const Home = () => {
 
                 return (
                   <Card key={index} sx={{
+                    width: `${cardWidth}px`,
                     margin:2,
                     backgroundColor: 'rgba(41,0,41,0.4)',
                     border: 'solid 1px #EBEBD3', 
                     borderRadius: 2}}>
-                    <CardActionArea href={flight.photo.link} target= '_blank' rel='noreferrer noopener'>
+                    <CardActionArea 
+                      href={flight.photo.link} 
+                      target= '_blank' rel='noreferrer noopener' 
+                      sx={
+                        { 
+                          backgroundImage: `url(${flight.photo.photo})`,
+                          backgroundSize: 'cover',
+                        }
+                      }>
                       <CardMedia
-                        sx={{objectFit:'contain'}}
+                        sx={
+                          {
+                            objectFit:'scale-down',
+                            backdropFilter: 'blur(8px)'
+                          }
+                        }
                         component='img'
                         image={flight.photo.photo}
                         alt={flight.registration}
+                        height= {`${cardHeight}px`}
                       />
                     </CardActionArea>
                     <Typography sx={{ color:'#FFFFFF', backgroundColor:'black'}} paddingLeft='5px' variant="caption">
