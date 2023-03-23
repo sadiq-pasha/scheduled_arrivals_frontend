@@ -40,7 +40,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   height: '65vh',
-  width: '80vw',
+  width: '70vw',
   bgcolor: 'black',
   border: '2px solid #ffffff',
   borderRadius: 2,
