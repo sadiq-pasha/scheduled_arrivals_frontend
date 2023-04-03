@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: '#290029' }}>
+      <AppBar position="static" style={{ background: '#3E193E' }}>
         <Toolbar disableGutters>
           <Box display='flex' flexGrow={1} alignItems='center'>
             <Link to='/'>
@@ -32,7 +32,7 @@ export default function ButtonAppBar() {
                 <Flight sx={{height:30, width:30}} />
               </IconButton>
             </Link>
-            <Typography variant="h6" component="div" sx={{color:'#EBEBD3'}}>
+            <Typography variant="h6" component="div" sx={{color:'#FFFFFF'}}>
             Enroute to LAX
             </Typography>
           </Box>

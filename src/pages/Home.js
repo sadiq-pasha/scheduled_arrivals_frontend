@@ -1,31 +1,47 @@
 // material ui imports
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
+import Box from '@mui/system/Box'
+import Button from '@mui/material/Button'
+import Modal from '@mui/material/Modal'
+import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
+import CardActionArea from '@mui/material/CardActionArea'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-import { CardActionArea } from '@mui/material'
-import Box from '@mui/system/Box'
-import { styled } from '@mui/material/styles'
-import Modal from '@mui/material/Modal'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import Switch from '@mui/material/Switch'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { styled } from '@mui/material/styles'
+
+// icons import
 import BoltIcon from '@mui/icons-material/Bolt'
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
-import CircularProgress from '@mui/material/CircularProgress'
 import AirplanemodeInactiveIcon from '@mui/icons-material/AirplanemodeInactive'
+import CircularProgress from '@mui/material/CircularProgress'
+import ThermostatIcon from '@mui/icons-material/Thermostat'
+import OpacityIcon from '@mui/icons-material/Opacity'
+import AirIcon from '@mui/icons-material/Air'
+import ExploreIcon from '@mui/icons-material/Explore'
+import WbSunnyIcon from '@mui/icons-material/WbSunny'
+import WbTwilightIcon from '@mui/icons-material/WbTwilight'
+import ErrorIcon from '@mui/icons-material/Error'
 
 // components
 import Footer from '../components/Footer'
 import SearchAppBar from '../components/Navbar'
+import MetarDecoder from '../components/DecodedMetar'
 
 // react and services imports
-import getData from '../services/axios'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const CardContentNoPadding = styled(CardContent)(`
   padding: 5px;
@@ -50,8 +66,11 @@ const style = {
 const Home = () => {
   const [flightData, setFlightData] = useState(null)
   const [airframedata, setAirframeData] = useState([])
+  const [weatherdata, setWeatherData] = useState(null)
   const [airframedataTable, setAirframeDataTable] = useState([])
   const [open, setOpen] = useState(false)
+  const [isCelsius, setIsCelsius] = useState(true)
+  const [isDisabled, setIsDisabled] = useState(false)
   
   const handleOpen = (i) => {
     setAirframeDataTable(airframedata[i])
@@ -59,16 +78,44 @@ const Home = () => {
   }
   const handleClose = () => setOpen(false)
 
+  const handleSwitchChange = (event) => {
+    event.stopPropagation()
+    setIsCelsius(!isCelsius)
+  }
+
+  const handleDecodeClick = () => {
+    setIsDisabled(true)
+  }
+
   useEffect(() => {
-    getData().then(response => {
-      setFlightData(response)
-      if (response && !response.error){
-        setAirframeData(response.map(each => {
-          return each.airframeData ? Object.entries(each.airframeData) : null
-        }))
-      }
-    })
+    const getData = () => {
+      // return null when the server throws an error because the error handling is handled by the useEffect function.
+      // when the useEffect sees 'null' it sets the flightdata to error, which then throws the 'SERVER ERROR' message.
+      return axios.get('/data')
+        .then(response => 
+        {
+          return response.data      
+        })
+        .catch(() => 
+        {
+          return null
+        })
+    }
+      
+    getData()
+      .then(response => {
+        if (response){
+          setFlightData(response.data)
+          setWeatherData(response.weather)
+          setAirframeData(response.data.map(each => {
+            return each.airframeData ? Object.entries(each.airframeData) : null
+          }))
+        } else {
+          setFlightData('error')
+        }
+      })
   },[])
+
   if (!flightData){
     return (
       <div>
@@ -85,7 +132,7 @@ const Home = () => {
     )
   }
   if (flightData){
-    if (flightData.error){
+    if (flightData === 'error'){
       return (
         <div>
           <SearchAppBar/>
@@ -105,7 +152,7 @@ const Home = () => {
       return (
         <div className="App">
           <SearchAppBar/>
-          <Container maxWidth={false}
+          <Container maxWidth={false} disableGutters
             sx={{
               border: 'solid 1px #EBEBD3', 
               width: '95%',
@@ -113,31 +160,216 @@ const Home = () => {
               backgroundColor: 'rgba(41,0,41,0.4)',
               marginY: 2,
             }}>
-            <Box m={2}>
-              <Box display='flex' justifyContent='center' gap={3} marginBottom={2}>
-                <Button
-                  href={'https://www.liveatc.net/hlisten.php?mount=klax_twr&icao=klax'}
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  variant='contained'
-                  size="small" 
-                  color='inherit'
-                  endIcon={<OpenInNewIcon/>}
-                >
+            <Typography sx={{ color:'#FFFFFF'}} m={2} variant="h4" textAlign='center'>
+                    Arrivals
+            </Typography>
+            <Accordion square disableGutters defaultExpanded sx={{marginTop: 2}}>
+              <AccordionSummary
+                expandIcon={<ExpandCircleDownIcon sx={{ 
+                  color: '#17BEBB',
+                  height:30, 
+                  width:30
+                }} />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                sx={{
+                  backgroundColor:'#3E193E'
+                }}
+              >
+                <Typography sx={{ color:'#FFFFFF'}} variant="h6">
+                Weather Conditions
+                </Typography>
+              </AccordionSummary>
+              {(Object.keys(weatherdata).length > 3) ? 
+                <AccordionDetails sx={{
+                  backgroundColor: 'rgba(41,0,41,1)',
+                }}>
+                  <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center'>
+                    <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' flexGrow={1}>
+                      <img src={weatherdata.weatherIcon} alt="" />
+                      <Typography sx={{ color:'#FFFFFF'}} variant="h6" textAlign='center'>
+                        {weatherdata.weatherDesc}
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <FormControlLabel onClick={handleSwitchChange}
+                        control={<Switch checked={!isCelsius} color='primary'/>}
+                        label={'°C/°F'}
+                        labelPlacement="start"
+                        sx={{color: '#FFFFFF'}}
+                      />
+                    </Box>
+                  </Box>
+                  <Box display='grid' gridTemplateColumns='repeat(auto-fit, minmax(120px, 1fr))' gap={5} m={2}>
+                    <Box display='flex' flexDirection='column' alignItems='center'>
+                      <ThermostatIcon sx={{ 
+                        color: '#17BEBB',
+                        height:30, 
+                        width:30
+                      }} />
+                      <Typography sx={{ color:'#FFFFFF'}} variant="body1" textAlign='center'>
+                          Temperature <br/>
+                        {isCelsius ? weatherdata.tempCelsius : weatherdata.tempFahrenheit}
+                      </Typography>
+                    </Box>
+                    <Box display='flex' flexDirection='column' alignItems='center'>
+                      <OpacityIcon sx={{ 
+                        color: '#17BEBB',
+                        height:30, 
+                        width:30
+                      }} />
+                      <Typography sx={{ color:'#FFFFFF'}} variant="body1" textAlign='center'>
+                    Humidity<br/>
+                        {weatherdata.weatherHumidity}
+                      </Typography>
+                    </Box>
+                    <Box display='flex' flexDirection='column' alignItems='center'>
+                      <AirIcon sx={{ 
+                        color: '#17BEBB',
+                        height:30, 
+                        width:30
+                      }} />
+                      <Typography sx={{ color:'#FFFFFF'}} variant="body1" textAlign='center'>
+                    Wind Speed<br/>
+                        {isCelsius ? weatherdata.windspeedMetric : weatherdata.windspeedImperial}
+                      </Typography>
+                    </Box>
+                    <Box display='flex' flexDirection='column' alignItems='center'>
+                      <ExploreIcon sx={{ 
+                        color: '#17BEBB',
+                        height:30, 
+                        width:30
+                      }} />
+                      <Typography sx={{ color:'#FFFFFF'}} variant="body1" textAlign='center'>
+                    Wind Direction<br/>
+                        {weatherdata.windDirection}
+                      </Typography>
+                    </Box>
+                    <Box display='flex' flexDirection='column' alignItems='center'>
+                      <WbSunnyIcon sx={{ 
+                        color: '#17BEBB',
+                        height:30, 
+                        width:30
+                      }} />
+                      <Typography sx={{ color:'#FFFFFF'}} variant="body1" textAlign='center'>
+                    Sunrise<br/>
+                        {weatherdata.sunriseTime}
+                      </Typography>
+                    </Box>
+                    <Box display='flex' flexDirection='column' alignItems='center'>
+                      <WbTwilightIcon sx={{ 
+                        color: '#17BEBB',
+                        height:30, 
+                        width:30
+                      }} />
+                      <Typography sx={{ color:'#FFFFFF'}} variant="body1" textAlign='center'>
+                    Sunset <br/>
+                        {weatherdata.sunsetTime}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </AccordionDetails>
+                :
+                <AccordionDetails sx={{
+                  backgroundColor: 'rgba(41,0,41,1)',
+                }}>
+                  <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' flexGrow={1}>
+                    <ErrorIcon sx={{ 
+                      color: 'red',
+                      height:40, 
+                      width:40
+                    }}/>
+                    <Typography sx={{ color:'#FFFFFF'}} marginLeft={1} variant="h6" textAlign='center'>
+                      Weather data unavailable
+                    </Typography>
+                  </Box>
+                </AccordionDetails>}
+            </Accordion>
+            <Accordion square defaultExpanded disableGutters>
+              <AccordionSummary
+                expandIcon={<ExpandCircleDownIcon sx={{ 
+                  color: '#17BEBB',
+                  height:30, 
+                  width:30
+                }} />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                sx={{
+                  backgroundColor:'#3E193E',
+                }}
+              >
+                <Typography sx={{ color:'#FFFFFF'}} variant="h6">
+                METAR
+                </Typography>
+              </AccordionSummary>
+              {(weatherdata.metar) ? 
+                <AccordionDetails sx={{
+                  backgroundColor: 'rgba(41,0,41,1)',
+                }}>
+                  <Box display='flex' flexDirection='column'>
+                    <Box textAlign='center'>
+                      <Typography sx={{ color:'#FFFFFF'}} variant="body1" textAlign='center'>
+                        {weatherdata.metar}
+                      </Typography>
+                    </Box>
+                    <Box textAlign='center'>
+                      {weatherdata.decodedMetar && <Button
+                        disabled={isDisabled}
+                        onClick={handleDecodeClick}
+                        variant='outlined'
+                        size="small" 
+                        color="inherit"
+                        endIcon={<BoltIcon/>}
+                        sx={{marginTop:1,
+                          backgroundColor: isDisabled ? '#808080' : '#17BEBB',
+                          '&:hover': {
+                            backgroundColor: '#D90368',
+                          }  }}
+                      >
+                Decode
+                      </Button>}
+                    </Box>
+                    {isDisabled && <MetarDecoder text={weatherdata.decodedMetar}/>}
+                  </Box>
+                </AccordionDetails>
+                :<AccordionDetails sx={{
+                  backgroundColor: 'rgba(41,0,41,1)',
+                }}>
+                  <Box display='flex' flexDirection='row' justifyContent='center' alignItems='center' flexGrow={1}>
+                    <ErrorIcon sx={{ 
+                      color: 'red',
+                      height:40, 
+                      width:40
+                    }}/>
+                    <Typography sx={{ color:'#FFFFFF'}} marginLeft={1} variant="h6" textAlign='center'>
+                    METAR unavailable
+                    </Typography>
+                  </Box>
+                </AccordionDetails>}
+            </Accordion>
+            <Box display='flex' flexWrap='wrap' justifyContent='center' gap={3} m={2}>
+              <Button
+                href={'https://www.liveatc.net/hlisten.php?mount=klax_twr&icao=klax'}
+                target='_blank'
+                rel='noreferrer noopener'
+                variant='contained'
+                size="small" 
+                color='inherit'
+                endIcon={<OpenInNewIcon/>}
+              >
                             LAX TOWER
-                </Button>
-                <Button
-                  href={'https://www.liveatc.net/hlisten.php?mount=klax_gnd&icao=klax'}
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  variant='contained'
-                  size="small" 
-                  color='inherit'
-                  endIcon={<OpenInNewIcon/>}
-                >
+              </Button>
+              <Button
+                href={'https://www.liveatc.net/hlisten.php?mount=klax_gnd&icao=klax'}
+                target='_blank'
+                rel='noreferrer noopener'
+                variant='contained'
+                size="small" 
+                color='inherit'
+                endIcon={<OpenInNewIcon/>}
+              >
                     LAX GROUND
-                </Button>
-              </Box>
+              </Button>
             </Box>
             <Grid container direction='row' justifyContent='center' rowSpacing={2}>
               {flightData.map((flight, index) => {
@@ -149,7 +381,7 @@ const Home = () => {
                     margin:2,
                     backgroundColor: 'rgba(41,0,41,0.4)',
                     border: 'solid 1px #EBEBD3', 
-                    borderRadius: 2}}>
+                  }}>
                     <CardActionArea 
                       href={flight.photo.link} 
                       target= '_blank' rel='noreferrer noopener' 

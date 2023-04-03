@@ -53,7 +53,7 @@ const LaxInfo = () => {
               component="img"
               style={{height:'900', width:'900'}}
               image={airportDiagram}
-              alt="green iguana"
+              alt="LAX airport diagram"
             />
           </CardActionArea>
         </Card>

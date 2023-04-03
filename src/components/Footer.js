@@ -12,7 +12,7 @@ export default function Footer() {
       flexGrow: 1,
       justifyContent: 'center',
       display: 'flex',
-      background: '#290029',
+      background: '#3E193E',
       gap:3,
       padding:2
     }}>

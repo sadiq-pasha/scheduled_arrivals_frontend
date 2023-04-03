@@ -57,23 +57,6 @@ const About = () => {
           </Box>
           <Box marginTop={3}>
             <Typography sx={{ color:'#FFFFFF'}} variant='h5' component='h1' m={2} align='left'>
-            ⚙️ How it works:
-            </Typography>
-            <Typography sx={{ color:'#FFFFFF'}} variant='body1' m={2} component='h1'>
-            Lets start with the backend, which is where MOST of the work takes place.<br/>
-            The backend first makes a request to the <Link href='https://flightaware.com/commercial/aeroapi/'>flightaware AeroAPI</Link> to request a list of scheduled arrivals at LAX.<br/>
-            The API replies with a list of arrivals and various related metadata. The server then extracts pertinent information from the response; such as flight numbers, flight registration, origin, destination, flight time, etc.<br/>
-            The next step is to get photos of the aircraft. This is done using the <Link href='https://www.planespotters.net/photo/api'>planespotters public API</Link>.<br/>
-            Once the photos are curated, airframe data is requested from <Link href='https://www.goflightlabs.com/'>goflightlabs</Link>.<br/>
-            This completes the data acquisition. The data is then sanitized and converted into JSON, after which it is stored on the server awaiting requests from users.<br/>
-            Flights for which tail numbers and photos are not found are then filtered; as these are critical to the website.<br/>
-            The front end of the website is a React skeleton painted over with a thick Material UI coating. React hooks handle all of the data fetching and state management.<br/>
-            Material UI provides reusable components such as Containers, Modals, Links and the Navbar.<br/>
-            Client side routing is handled by React router. 
-            </Typography>
-          </Box>
-          <Box marginTop={3}>
-            <Typography sx={{ color:'#FFFFFF'}} variant='h5' component='h1' m={2} align='left'>
             ⚠️ Limitations and future work:
             </Typography>
             <Typography sx={{ color:'#FFFFFF'}} variant='body1' m={2} component='h1'>
