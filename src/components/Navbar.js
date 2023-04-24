@@ -1,14 +1,14 @@
 // material UI imports
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Toolbar from '@mui/material/Toolbar'
 import AppBar from '@mui/material/AppBar'
+import Drawer from '@mui/material/Drawer'
+import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import Flight from '@mui/icons-material/Flight'
 import MenuIcon from '@mui/icons-material/Menu'
-import Drawer from '@mui/material/Drawer'
-import Divider from '@mui/material/Divider'
+import CloseIcon from '@mui/icons-material/Close'
 import { useState } from 'react'
 
 // react router imports
@@ -64,40 +64,87 @@ export default function ButtonAppBar() {
             PaperProps={{
               sx: {
                 backgroundColor: '#3E193E',
+                overflowX:'hidden'
               }
             }}
           >
             <Box
-              sx={{ width:200, overflowX:'hidden' }}
+              sx={{ width:200}}
               role="presentation"
               onClick={() => setNavbarMenuOpen(false)}
               onKeyDown={() => setNavbarMenuOpen(false)}
-              textAlign='left'            >
+              textAlign='left'>
+              <Box display='flex' justifyContent='space-between' alignItems='center'>
+                <Typography variant="h6" component="div" m='15px' sx={{color:'#FFFFFF'}}>
+                  Menu
+                </Typography>
+                <IconButton
+                  onClick={() => setNavbarMenuOpen(false)}
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ 
+                    m: 1,
+                    color: '#17BEBB',
+                    '&:hover': { color: '#D90368'}    
+                  }}
+                >
+                  <CloseIcon sx={{height:30, width:30}} />
+                </IconButton>
+              </Box>
+              <Divider />
               <Link to="/about" style={{ textDecoration: 'none'}}>
-                <Typography variant='text' sx={{ 
+                <Typography m='15px' sx={{ 
                   width:200,
-                  mr: 2,
                   color: '#17BEBB',
                   '&:hover': {
                     color: '#D90368',
                   }    
                 }}>
-                ABOUT
+                About
                 </Typography>
               </Link>
               <Divider />
               <Link to="/laxinfo" style={{ textDecoration: 'none'}}>
-                <Button variant='text' sx={{ 
-                  mr: 2,
+                <Typography m='15px' sx={{ 
+                  width:200,
                   color: '#17BEBB',
                   '&:hover': {
                     color: '#D90368',
                   }    
                 }}>
-                KLAX
-                </Button>
+                Airport info
+                </Typography>
               </Link>
               <Divider />
+              <Typography variant="h6" component="div" m='15px' sx={{color:'#FFFFFF'}}>
+                ATC Comms
+              </Typography>
+              <Divider />
+              <a href='https://www.liveatc.net/hlisten.php?mount=klax_twr&icao=klax' style={{ textDecoration: 'none'}} target="_blank" rel="noopener noreferrer">
+                <Typography m='15px' sx={{ 
+                  width:200,
+                  color: '#17BEBB',
+                  '&:hover': {
+                    color: '#D90368',
+                  }    
+                }}>
+                  LAX Tower
+                </Typography>
+              </a>
+              <Divider />
+              <a href='https://www.liveatc.net/hlisten.php?mount=klax_gnd&icao=klax' style={{ textDecoration: 'none'}} target="_blank" rel="noopener noreferrer">
+                <Typography m='15px' sx={{ 
+                  width:200,
+                  color: '#17BEBB',
+                  '&:hover': {
+                    color: '#D90368',
+                  }    
+                }}>
+                  LAX Ground
+                </Typography>
+              </a>
             </Box>
           </Drawer>
         </Toolbar>

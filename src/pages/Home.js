@@ -69,7 +69,7 @@ const Home = () => {
   const [weatherdata, setWeatherData] = useState(null)
   const [airframedataTable, setAirframeDataTable] = useState([])
   const [open, setOpen] = useState(false)
-  const [isCelsius, setIsCelsius] = useState(true)
+  const [isCelsius, setIsCelsius] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
   
   const handleOpen = (i) => {
@@ -191,13 +191,30 @@ const Home = () => {
                         {weatherdata.weatherDesc}
                       </Typography>
                     </Box>
-                    <Box>
+                    <Box display='flex' alignItems='center' justifyContent='center'>
+                      <Typography sx={{ color:'#FFFFFF'}} variant="h6" textAlign='center'>
+                        °C
+                      </Typography>
                       <FormControlLabel onClick={handleSwitchChange}
-                        control={<Switch checked={!isCelsius} color='primary'/>}
-                        label={'°C/°F'}
-                        labelPlacement="start"
-                        sx={{color: '#FFFFFF'}}
+                        control={<Switch checked={!isCelsius} color='primary' sx={{
+                          '&.MuiSwitch-root .MuiSwitch-switchBase': {
+                            color: '#17BEBB'
+                          },
+                        
+                          '&.MuiSwitch-root .Mui-checked': {
+                            color: '#17BEBB'
+                          },
+
+                          '& .MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track': {
+                            backgroundColor: '#17BEBB'
+                          }
+                          
+                        }}/>}
+                        sx={{color: '#17BEBB', m:'0px'}}
                       />
+                      <Typography sx={{ color:'#FFFFFF'}} variant="h6" textAlign='center'>
+                        °F
+                      </Typography>
                     </Box>
                   </Box>
                   <Box display='grid' gridTemplateColumns='repeat(auto-fit, minmax(120px, 1fr))' gap={5} m={2}>
@@ -347,31 +364,7 @@ const Home = () => {
                   </Box>
                 </AccordionDetails>}
             </Accordion>
-            <Box display='flex' flexWrap='wrap' justifyContent='center' gap={3} m={2}>
-              <Button
-                href={'https://www.liveatc.net/hlisten.php?mount=klax_twr&icao=klax'}
-                target='_blank'
-                rel='noreferrer noopener'
-                variant='contained'
-                size="small" 
-                color='inherit'
-                endIcon={<OpenInNewIcon/>}
-              >
-                            LAX TOWER
-              </Button>
-              <Button
-                href={'https://www.liveatc.net/hlisten.php?mount=klax_gnd&icao=klax'}
-                target='_blank'
-                rel='noreferrer noopener'
-                variant='contained'
-                size="small" 
-                color='inherit'
-                endIcon={<OpenInNewIcon/>}
-              >
-                    LAX GROUND
-              </Button>
-            </Box>
-            <Grid container direction='row' justifyContent='center' rowSpacing={2}>
+            <Grid container direction='row' justifyContent='center' rowSpacing={2} marginTop='15px'>
               {flightData.map((flight, index) => {
                 //   const airframedata = flight.airframeData ? Object.entries(flight.airframeData) : []
 
