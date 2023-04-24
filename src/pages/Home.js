@@ -343,7 +343,7 @@ const Home = () => {
                             backgroundColor: '#D90368',
                           }  }}
                       >
-                Decode
+                      chatGPT decoder
                       </Button>}
                     </Box>
                     {isDisabled && <MetarDecoder text={weatherdata.decodedMetar}/>}

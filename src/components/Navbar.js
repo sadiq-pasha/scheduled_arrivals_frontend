@@ -145,6 +145,35 @@ export default function ButtonAppBar() {
                   LAX Ground
                 </Typography>
               </a>
+              <Divider />
+              <Typography variant="h6" component="div" m='15px' sx={{color:'#FFFFFF'}}>
+                More
+              </Typography>
+              <Divider />
+              <a href='https://github.com/sadiq-pasha/scheduled_arrivals_server' style={{ textDecoration: 'none'}} target="_blank" rel="noopener noreferrer">
+                <Typography m='15px' sx={{ 
+                  width:200,
+                  color: '#17BEBB',
+                  '&:hover': {
+                    color: '#D90368',
+                  }    
+                }}>
+                  Github README
+                </Typography>
+              </a>
+              <Divider />
+              <a href='https://www.buymeacoffee.com/sadiqpasha' style={{ textDecoration: 'none'}} target="_blank" rel="noopener noreferrer">
+                <Typography m='15px' sx={{ 
+                  width:200,
+                  color: '#17BEBB',
+                  '&:hover': {
+                    color: '#D90368',
+                  }    
+                }}>
+                  Support me!
+                </Typography>
+              </a>
+              <Divider />
             </Box>
           </Drawer>
         </Toolbar>
